@@ -54,9 +54,9 @@ class UserController {
   };
 
   public updateUser = async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
+    const { user_id } = req.params;
     const user: IUser = req.body;
-    user.id = id;
+    user.user_id = user_id;
     const userModel = new User(this.db, user);
 
     try {
@@ -69,8 +69,8 @@ class UserController {
   };
 
   public deleteUser = async (req: Request, res: Response): Promise<void> => {
-    const { id } = req.params;
-    const userModel = new User(this.db, { id } as IUser);
+    const { user_id } = req.params;
+    const userModel = new User(this.db, { user_id } as IUser);
 
     try {
       await userModel.delete();
@@ -82,11 +82,11 @@ class UserController {
   };
 
   public loginUser = async (req: Request, res: Response): Promise<void> => {
-    const { id, password } = req.body;
-    const userModel = new User(this.db, { id, password } as IUser);
+    const { user_id, password } = req.body;
+    const userModel = new User(this.db, { user_id, password } as IUser);
 
     try {
-      const userData = await userModel.getByIdAndPassword(id, password);
+      const userData = await userModel.getByIdAndPassword(user_id, password);
       if (userData) {
         res.status(200).json(userData);
       } else {

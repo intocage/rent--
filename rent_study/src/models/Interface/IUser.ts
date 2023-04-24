@@ -1,8 +1,8 @@
 export interface IUser {
-    no: number
-    id: string;
+    user_number: number;
+    user_id: string;
     password: string;
-    name: string;
-    phone: string;
+    user_name: string;
+    phone_number: string;
     userClass: string;
   }

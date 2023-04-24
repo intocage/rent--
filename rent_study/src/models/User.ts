@@ -34,11 +34,11 @@ class User {
   }
 
   async update(user: Omit<IUser, "id">): Promise<void> {
-    await this.db.query("UPDATE users SET ? WHERE id = ?", [user, this.user?.id]);
+    await this.db.query("UPDATE users SET ? WHERE id = ?", [user, this.user?.user_id]);
   }
 
   async delete(): Promise<void> {
-    await this.db.query("DELETE FROM users WHERE id = ?", [this.user?.id]);
+    await this.db.query("DELETE FROM users WHERE id = ?", [this.user?.user_id]);
   }
 
   async getByIdAndPassword(
